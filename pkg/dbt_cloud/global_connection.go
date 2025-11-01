@@ -478,6 +478,22 @@ func (DatabricksConfig) AdapterVersion() string {
 	return "databricks_v0"
 }
 
+type SparkConfig struct {
+	Host           *string                   `json:"host,omitempty"`
+	Cluster        *string                   `json:"cluster,omitempty"`
+	Method         *string                   `json:"method,omitempty"`
+	Port           *int64                    `json:"port,omitempty"`
+	User           nullable.Nullable[string] `json:"user,omitempty"`
+	Auth           nullable.Nullable[string] `json:"auth,omitempty"`
+	Organization   nullable.Nullable[string] `json:"organization,omitempty"`
+	ConnectTimeout nullable.Nullable[int64]  `json:"connect_timeout,omitempty"`
+	ConnectRetries nullable.Nullable[int64]  `json:"connect_retries,omitempty"`
+}
+
+func (SparkConfig) AdapterVersion() string {
+	return "apache_spark_v0"
+}
+
 // Redshift and Postgres are the same today but they might diverge in the future to support more authentication methods
 type RedshiftConfig struct {
 	HostName *string                   `json:"hostname,omitempty"`
